@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="100%" height="100%" style="background:#0d1117; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; border-radius: 12px;">
+  <defs>
+    <filter id="dropdownShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- GitHub Top Bar Mockup -->
+  <rect x="0" y="0" width="900" height="50" fill="#161b22" rx="12" ry="12"/>
+  <circle cx="30" cy="25" r="14" fill="#238636"/>
+  <path d="M26 21 L34 25 L26 29 Z" fill="#ffffff"/>
+  <text x="56" y="30" fill="#f0f6fc" font-size="15" font-weight="600">MiliScripts / free-mcp-tool-extension</text>
+  
+  <rect x="740" y="12" width="130" height="28" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+  <text x="805" y="30" fill="#f0f6fc" font-size="13" font-weight="600" text-anchor="middle">⭐ Star</text>
+
+  <!-- Repo Content Area -->
+  <g transform="translate(40, 75)">
+    <!-- Branch selector & Code button row -->
+    <rect x="0" y="0" width="130" height="34" rx="6" fill="#21262d" stroke="#30363d" stroke-width="1"/>
+    <text x="45" y="22" fill="#c9d1d9" font-size="13">main ▼</text>
+
+    <!-- Green '<> Code' Button (Highlighted) -->
+    <g transform="translate(680, 0)">
+      <rect width="140" height="36" rx="6" fill="#238636" stroke="#2ea043" stroke-width="1.5"/>
+      <text x="70" y="23" fill="#ffffff" font-size="14" font-weight="600" text-anchor="middle">&lt;&gt; Code ▼</text>
+    </g>
+
+    <!-- Dropdown Menu -->
+    <g transform="translate(500, 48)" filter="url(#dropdownShadow)">
+      <rect width="320" height="280" rx="10" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+      
+      <!-- Tab header: Local / Codespaces -->
+      <text x="20" y="30" fill="#f0f6fc" font-size="13" font-weight="600">Clone</text>
+      <text x="20" y="52" fill="#8b949e" font-size="11.5">HTTPS / SSH / CLI</text>
+      <line x1="16" y1="65" x2="304" y2="65" stroke="#21262d" stroke-width="1"/>
+
+      <!-- Clone URL box -->
+      <rect x="16" y="78" width="288" height="32" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+      <text x="26" y="99" fill="#8b949e" font-size="11" font-family="monospace">https://github.com/MiliScripts/free-mcp...</text>
+
+      <line x1="16" y1="125" x2="304" y2="125" stroke="#21262d" stroke-width="1"/>
+
+      <!-- Open in Desktop / Codespaces -->
+      <text x="45" y="152" fill="#c9d1d9" font-size="13">Open with GitHub Desktop</text>
+
+      <line x1="16" y1="172" x2="304" y2="172" stroke="#21262d" stroke-width="1"/>
+
+      <!-- Download ZIP Button (Pulsing highlight) -->
+      <g transform="translate(16, 185)">
+        <rect width="288" height="46" rx="8" fill="rgba(56, 139, 253, 0.15)" stroke="#388bfd" stroke-width="2"/>
+        <!-- Download icon -->
+        <path d="M26 15 L26 27 M21 22 L26 27 L31 22 M18 31 L34 31" stroke="#58a6ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="48" y="24" fill="#58a6ff" font-size="14" font-weight="700">Download ZIP</text>
+        <text x="48" y="38" fill="#8b949e" font-size="11">No Git required • Direct zip archive</text>
+      </g>
+    </g>
+
+    <!-- Visual Pointer / Tooltip -->
+    <g transform="translate(30, 160)">
+      <rect width="440" height="150" rx="12" fill="#1f242c" stroke="#388bfd" stroke-width="1.5"/>
+      <text x="24" y="36" fill="#58a6ff" font-size="15" font-weight="700">💡 Easy Download (No Git Needed!)</text>
+      <text x="24" y="68" fill="#e6edf3" font-size="13">1. Click the green <tspan fill="#3fb950" font-weight="600">&lt;&gt; Code</tspan> button above.</text>
+      <text x="24" y="96" fill="#e6edf3" font-size="13">2. Click <tspan fill="#58a6ff" font-weight="600">Download ZIP</tspan> from the menu.</text>
+      <text x="24" y="124" fill="#e6edf3" font-size="13">3. Extract (unzip) the file and load it in Chrome!</text>
+    </g>
+  </g>
+</svg>

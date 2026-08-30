@@ -42,16 +42,31 @@ A free, open-source, universal Model Context Protocol (MCP) tool runner and auto
 
 ---
 
+### 📥 Downloading the Extension
+
+#### Option A: Download as ZIP (No Git Required! ⚡)
+If you don't have Git installed, you can easily download the extension as a `.zip` archive:
+1. Click the green **`<> Code`** button at the top of this GitHub repository page.
+2. Click **Download ZIP**.
+3. Extract (unzip) the downloaded file to a folder on your computer.
+
+<p align="center">
+  <img src="assets/step_download_zip.svg" alt="How to download repository as ZIP" width="85%" />
+</p>
+
+#### Option B: Clone via Git
+```bash
+git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
+```
+
+---
+
 ### 📖 Step-by-Step Installation & Usage Guide
 
 #### Step 1: Install Extension in Developer Mode
-1. Clone or download this repository:
-   ```bash
-   git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
-   ```
-2. Open Chrome (or any Chromium browser like Brave, Edge, Arc) and go to `chrome://extensions/`.
-3. Enable **Developer mode** toggle in the top-right corner.
-4. Click **Load unpacked** and select the extension folder (`free-mcp-tool-extension`).
+1. Open Chrome (or any Chromium browser like Brave, Edge, Arc) and go to `chrome://extensions/`.
+2. Enable **Developer mode** toggle in the top-right corner.
+3. Click **Load unpacked** and select the unzipped or cloned extension folder (`free-mcp-tool-extension`).
 
 <p align="center">
   <img src="assets/step1_load_extension.jpg" alt="Step 1: Load unpacked extension in Chrome" width="85%" />
@@ -59,7 +74,7 @@ A free, open-source, universal Model Context Protocol (MCP) tool runner and auto
 
 #### Step 2: Configure Your MCP Servers
 1. Click the **Free MCP Tool Extension** icon in your browser extension toolbar.
-2. Enter your MCP Server URL (you can try the free public date MCP: `https://mcpdate.kamyaarsr.workers.dev/mcp`) and click **+ Add**.
+2. Enter your MCP Server URL (you can test with the free public date MCP: `https://mcpdate.kamyaarsr.workers.dev/mcp`) and click **+ Add**.
 3. The extension will automatically verify the connection and register all exposed tools (e.g. `get_date`, `get_jalali_date`).
 
 <p align="center">
@@ -83,6 +98,7 @@ A free, open-source, universal Model Context Protocol (MCP) tool runner and auto
 free-mcp-tool-extension/
 ├── assets/
 │   ├── banner.jpg                  # GitHub repository banner
+│   ├── step_download_zip.svg       # Download ZIP illustration
 │   ├── step1_load_extension.jpg    # Installation screenshot
 │   ├── step2_setup_server.svg      # Server popup UI diagram
 │   ├── step3_chat_execution.svg    # Execution loop diagram
@@ -95,6 +111,15 @@ free-mcp-tool-extension/
 ├── .gitignore                      # Git ignore file
 └── README.md                       # Documentation
 ```
+
+---
+
+### ⭐ Support & Feedback
+
+If you find this project useful, please consider giving it a **Star ⭐** on GitHub!
+
+💬 **Feedback & Suggestions:**
+Feel free to reach out and send your feedback directly on Telegram: **[@kiorcode](https://t.me/kiorcode)**
 
 ---
 
@@ -129,16 +154,31 @@ free-mcp-tool-extension/
 
 ---
 
+### 📥 دانلود افزونه
+
+#### روش اول: دانلود مستقیم فایل ZIP (بدون نیاز به گیت! ⚡)
+اگر نرم‌افزار Git روی سیستم شما نصب نیست:
+1. در بالای صفحه همین ریپازیتوری در گیت‌هاب، روی دکمه سبز رنگ **`Code <>`** کلیک کنید.
+2. گزینه **Download ZIP** را انتخاب کنید.
+3. فایل دانلود شده را با راست‌کلیک و گزینه **Extract All** (یا باز کردن فایل زیپ) در یک پوشه استخراج نمایید.
+
+<p align="center">
+  <img src="assets/step_download_zip.svg" alt="راهنمای دانلود فایل زیپ از گیت‌هاب" width="85%" />
+</p>
+
+#### روش دوم: کلون از طریق گیت
+```bash
+git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
+```
+
+---
+
 ### 🚀 آموزش گام‌به‌گام نصب و راه‌اندازی
 
 #### گام ۱: نصب افزونه در مرورگر کروم
-1. ریپازیتوری را کلون یا دانلود کنید:
-   ```bash
-   git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
-   ```
-2. مرورگر کروم (یا هر مرورگر مبتنی بر Chromium مانند Brave، Edge، Arc) را باز کرده و به آدرس `chrome://extensions/` بروید.
-3. گزینه **Developer mode** (حالت توسعه‌دهنده) را در گوشه سمت راست بالای صفحه فعال کنید.
-4. روی دکمه **Load unpacked** کلیک کرده و پوشه پروژه (`free-mcp-tool-extension`) را انتخاب نمایید.
+1. مرورگر کروم (یا هر مرورگر مبتنی بر Chromium مانند Brave، Edge، Arc) را باز کرده و به آدرس `chrome://extensions/` بروید.
+2. گزینه **Developer mode** (حالت توسعه‌دهنده) را در گوشه سمت راست بالای صفحه فعال کنید.
+3. روی دکمه **Load unpacked** کلیک کرده و پوشه اکسترکت شده پروژه (`free-mcp-tool-extension`) را انتخاب نمایید.
 
 <p align="center">
   <img src="assets/step1_load_extension.jpg" alt="گام ۱: بارگذاری افزونه در کروم" width="85%" />
@@ -164,6 +204,9 @@ free-mcp-tool-extension/
 
 ---
 
-## 📄 لایسنس (License)
+### ⭐ حمایت و بازخورد
 
-این پروژه تحت لایسنس MIT منتشر شده و کاملاً رایگان و متن‌باز است.
+اگر این پروژه برای شما کاربردی بود، لطفاً با دادن یک **ستاره ⭐ (Star)** در گیت‌هاب از آن حمایت کنید!
+
+💬 **ارتباط و ارسال نظرات:**
+جهت ارسال بازخوردها، گزارش باگ یا پیشنهادات می‌توانید در تلگرام با آیدی **[@kiorcode](https://t.me/kiorcode)** در ارتباط باشید.
