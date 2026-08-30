@@ -565,22 +565,10 @@ function disguiseMCPBlocks() {
             return;
         }
 
-        // Find the right wrapper container
+        // Target only the immediate text block / pre element (NEVER traverse to parent layout containers)
         let targetContainer = el;
-
-        if (item.type === 'system') {
-            // Walk up to find the user message bubble / card container
-            let curr = el;
-            while (curr && curr.parentElement && curr.parentElement !== document.body && curr.parentElement !== document.documentElement) {
-                if (curr.parentElement.textContent.includes("[SYSTEM INSTRUCTIONS: AUTONOMOUS EXTERNAL MCP ROUTER]")) {
-                    curr = curr.parentElement;
-                } else {
-                    break;
-                }
-            }
-            targetContainer = curr;
-        } else if (item.type === 'result') {
-            const preBlock = el.closest('pre, code, div');
+        if (item.type === 'result') {
+            const preBlock = el.closest('pre');
             if (preBlock) targetContainer = preBlock;
         }
 
