@@ -277,9 +277,12 @@ free-mcp-tool-extension/
 
 ---
 
-### ⭐ Support & Feedback
+### ⭐ Support, Contributions & Feedback
 
 If you find this project useful, please consider giving it a **Star ⭐** on GitHub!
+
+🤝 **Suggest Cool MCP Servers / Contribute:**
+Have you built or found a cool, free-to-use custom MCP server (like the Telegram agent or date tools)? We'd love to feature it! Feel free to **open a Pull Request** or submit an Issue to add your server to the recommended list.
 
 💬 **Feedback & Suggestions:**
 Feel free to reach out and send your feedback directly on Telegram: **[@kiorcode](https://t.me/kiorcode)**
@@ -429,9 +432,12 @@ git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
 
 ---
 
-### ⭐ حمایت و بازخورد
+### ⭐ حمایت، مشارکت و بازخورد
 
 اگر این پروژه برای شما کاربردی بود، لطفاً با دادن یک **ستاره ⭐ (Star)** در گیت‌هاب از آن حمایت کنید!
+
+🤝 **معرفی سرورهای جالب MCP و مشارکت:**
+اگر سرور اختصاصی و کاربردی رایگانی برای MCP ساخته‌اید یا می‌شناسید (مشابه ربات تلگرام یا تقویم)، بسیار خوشحال می‌شویم آن را به اشتراک بگذارید! می‌توانید با ارسال **Pull Request** یا باز کردن Issue در گیت‌هاب، سرور خود را به لیست سرورهای پیشنهادی اضافه کنید.
 
 💬 **ارتباط و ارسال نظرات:**
 جهت ارسال بازخوردها، گزارش باگ یا پیشنهادات می‌توانید در تلگرام با آیدی **[@kiorcode](https://t.me/kiorcode)** در ارتباط باشید.
