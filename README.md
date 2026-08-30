@@ -46,7 +46,7 @@ free-mcp-tool-extension/
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/free-mcp-tool-extension.git
+   git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
    ```
 
 2. **Load the extension in Chrome / Brave / Edge / Arc**:
