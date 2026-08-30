@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "MCP AI Agent Router",
+  "name": "Free MCP Tool Extension",
   "version": "3.8",
-  "description": "Universal MCP client for DeepSeek, Qwen, Duck.ai, Gemini, and Mistral.",
+  "description": "Universal MCP tool runner and agent router for DeepSeek, Gemini, Qwen, Duck.ai, Mistral, and Z.ai.",
   "permissions": [
     "storage"
   ],

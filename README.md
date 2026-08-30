@@ -1,12 +1,12 @@
-# MCP AI Agent Router (Chrome Extension)
+# Free MCP Tool Extension 🚀
 
-A universal Model Context Protocol (MCP) client and autonomous tool agent for web-based AI interfaces. Connect remote MCP servers and execute tools seamlessly within web LLM chats such as DeepSeek, Gemini, Qwen, Duck.ai, Mistral, and Z.ai.
+A free, open-source, universal Model Context Protocol (MCP) tool runner and autonomous agent router for web AI chats. Seamlessly connect local or remote MCP servers and execute tools directly inside web LLMs like DeepSeek, Google Gemini, Qwen, DuckDuckGo AI, Mistral, and Z.ai.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-- 🔌 **Universal MCP Compatibility**: Connects to standard MCP JSON-RPC endpoints, custom REST tool lists, and remote MCP routers.
+- 🔌 **Universal MCP Compatibility**: Connects to standard MCP JSON-RPC endpoints, custom REST tool lists, and remote MCP routers without extra backend setup.
 - 🌐 **Multi-Platform Web LLM Support**:
   - DeepSeek (`deepseek.com`)
   - Google Gemini (`gemini.google.com`)
@@ -14,19 +14,23 @@ A universal Model Context Protocol (MCP) client and autonomous tool agent for we
   - DuckDuckGo AI (`duck.ai`)
   - Mistral AI (`mistral.ai`)
   - Z.ai (`z.ai`)
-- 🤖 **Autonomous Multi-Step Execution Loop**: Injects dynamic system instructions and schema prompts, monitors chat responses for tool execution calls, runs remote tools via background service workers, and injects results back into the conversation for continuous execution until completion.
-- 🎛️ **Modern Popup Manager**:
+- 🤖 **Autonomous Multi-Step Tool Execution Loop**:
+  - Injects dynamic schema prompts and tool capabilities.
+  - Automatically intercepts AI tool execution calls.
+  - Executes remote tools via background service workers with full CORS handling.
+  - Feeds results back into the conversation for continuous execution until task completion.
+- 🎛️ **Modern Popup Dashboard**:
   - Live server connection health monitoring (online / error indicators).
-  - Enable / disable individual servers or specific tools.
+  - Enable / disable individual servers or specific tools on the fly.
   - Inspect server tool catalogs with schema arguments and parameter details.
-- ⚡ **Manifest V3 Architecture**: Secure background proxying (`background.js`) to prevent CORS issues when communicating with local/remote MCP servers.
+- ⚡ **Manifest V3 Compliant**: Fast, lightweight, and secure.
 
 ---
 
 ## 📁 Repository Structure
 
 ```
-deepseek-mcp-extension/
+free-mcp-tool-extension/
 ├── manifest.json       # Chrome extension Manifest V3 configuration
 ├── popup.html          # Extension popup UI (modern dark theme)
 ├── popup.js            # Server management, live tool registry, and toggles
@@ -42,31 +46,39 @@ deepseek-mcp-extension/
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/YOUR_USERNAME/free-mcp-tool-extension.git
    ```
 
-2. **Load the extension in Chrome / Brave / Edge**:
+2. **Load the extension in Chrome / Brave / Edge / Arc**:
    - Open your browser and navigate to `chrome://extensions/` (or `edge://extensions/`).
    - Enable **Developer mode** (toggle located in the top-right corner).
-   - Click **Load unpacked** and select the `deepseek-mcp-extension` directory.
+   - Click **Load unpacked** and select this extension's directory (`free-mcp-tool-extension`).
 
 ---
 
-## 🛠️ Usage
+## 🛠️ How to Use
 
 1. **Add MCP Servers**:
-   - Click the extension icon in your browser toolbar to open the MCP Agent Manager.
+   - Click the extension icon in your browser toolbar to open the **Free MCP Tool Extension** dashboard.
    - Enter your MCP server URL (e.g. `https://your-mcp-server.com/mcp` or `http://localhost:8000/mcp`) and click **Add**.
-   - The extension automatically discovers and displays all available tools exposed by the server.
+   - The extension will automatically discover and display all tools exposed by the server.
 
 2. **Use in AI Web Chats**:
    - Open any supported platform (e.g., DeepSeek, Gemini, Qwen).
-   - The MCP Agent overlay button will appear in the chat interface.
-   - Toggle the agent **ON** and prompt the AI as usual (e.g., *"Check the latest status using available tools"*).
-   - The extension will inject tool definitions, catch AI tool requests, invoke the MCP server, and feed responses back to the model automatically.
+   - The floating MCP Agent status badge will appear in the chat interface.
+   - Ensure the agent is toggled **ON** and prompt the AI as usual (e.g., *"Check the latest status using available tools"*).
+   - The extension takes care of tool execution and multi-step feedback loops automatically.
+
+---
+
+## 💡 Recommended GitHub Repository Names
+
+- `free-mcp-tool-extension` *(Recommended)*
+- `free-mcp-web-extension`
+- `mcp-ai-agent-extension`
 
 ---
 
 ## 📄 License
 
-MIT License. Feel free to use and contribute!
+MIT License. Free and open source!
