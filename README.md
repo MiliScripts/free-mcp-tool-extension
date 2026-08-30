@@ -75,8 +75,16 @@ git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
 
 #### Step 2: Configure Your MCP Servers
 1. Click the **Free MCP Tool Extension** icon in your browser extension toolbar.
-2. Enter your MCP Server URL (you can test with the free public date MCP: `https://mcpdate.kamyaarsr.workers.dev/mcp`) and click **+ Add**.
-3. The extension will automatically verify the connection and register all exposed tools (e.g. `get_date`, `get_jalali_date`).
+2. Enter your MCP Server URL and click **+ Add**:
+   - 📅 **Free Public Date MCP**:
+     `https://mcpdate.kamyaarsr.workers.dev/mcp` *(Provides `get_date`, `get_jalali_date`)*
+   - 📱 **Free Personal Telegram Agent MCP (@saveitmcpBot)**:
+     1. Start the bot on Telegram: **[@saveitmcpBot](https://t.me/saveitmcpBot)**
+     2. Send `/start` to receive your private MCP URL:
+        `https://saveitmcp.miladjobs22.workers.dev/YOUR_SECRET_KEY/mcp`
+     3. Add this URL into the extension!
+     4. Now in any AI web chat, you can ask: *"Send this summary/file/post to my Telegram!"* and the AI will autonomously deliver messages, rich formatted text, photos, files, and checklists directly to your Telegram chat.
+3. The extension automatically registers all exposed tools!
 
 <p align="center">
   <img src="assets/step2_setup_server.svg" alt="Step 2: MCP Server Configuration Popup" width="85%" />
@@ -341,8 +349,16 @@ git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
 
 #### گام ۲: اضافه کردن سرور MCP
 1. روی آیکون **Free MCP Tool Extension** در نوار ابزار بالای مرورگر کلیک کنید.
-2. آدرس سرور MCP خود را وارد کنید (می‌توانید از سرور عمومی و رایگان تقویم جلالی/میلادی تست کنید: `https://mcpdate.kamyaarsr.workers.dev/mcp`) و دکمه **Add** را بزنید.
-3. اکستنشن به صورت خودکار ابزارها را شناسایی و لیست می‌کند (مانند `get_date` و `get_jalali_date`).
+2. آدرس سرور MCP خود را وارد کرده و دکمه **Add** را بزنید:
+   - 📅 **سرور عمومی تقویم جلالی/میلادی**:
+     `https://mcpdate.kamyaarsr.workers.dev/mcp` *(شامل ابزارهای `get_date` و `get_jalali_date`)*
+   - 📱 **سرور رایگان ارسال به تلگرام با ربات (@saveitmcpBot)**:
+     1. در تلگرام ربات **[@saveitmcpBot](https://t.me/saveitmcpBot)** را استارت (`/start`) کنید.
+     2. ربات یک لینک اختصاصی MCP برای شما ارسال می‌کند:
+        `https://saveitmcp.miladjobs22.workers.dev/YOUR_SECRET_KEY/mcp`
+     3. این آدرس را داخل اکستنشن وارد کنید.
+     4. حالا در هر چت هوش مصنوعی (DeepSeek، Gemini و...) می‌توانید بگویید: *«این خلاصه متن یا کد را به تلگرامم بفرست»* تا هوش مصنوعی به شکل خودکار پیام، فایل، عکس، چک‌لیست و متون فرمت‌شده را به تلگرام شما ارسال کند!
+3. اکستنشن به صورت خودکار ابزارها را شناسایی و لیست می‌کند.
 
 <p align="center">
   <img src="assets/step2_setup_server.svg" alt="گام ۲: پنل تنظیمات سرور MCP" width="85%" />
