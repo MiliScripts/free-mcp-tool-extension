@@ -10,6 +10,7 @@
 
 <p align="center">
   <a href="#-english-guide"><b>English Guide</b></a> •
+  <a href="#-developer-guide-building-custom-mcp-servers"><b>Developer Guide (Build MCP)</b></a> •
   <a href="#-راهنمای-فارسی-persian-guide"><b>راهنمای فارسی (Persian)</b></a>
 </p>
 
@@ -89,6 +90,160 @@ git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
 <p align="center">
   <img src="assets/step3_chat_execution.svg" alt="Step 3: Autonomous Tool Execution inside Web Chat" width="85%" />
 </p>
+
+---
+
+## 🛠️ Developer Guide: Building Custom MCP Servers
+
+If you want to build your own custom MCP server (using Cloudflare Workers, Node.js/Express, Python FastAPI, etc.), here is the exact request/response specification handled by this extension.
+
+### 1. Tool Discovery (`tools/list`)
+When you add or refresh a server, the extension sends a `POST` request with JSON-RPC:
+
+**Request Payload:**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/list"
+}
+```
+
+**Expected Response Formats (Supports Standard & Simplified):**
+
+*Standard MCP JSON-RPC Format (Recommended):*
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tools": [
+      {
+        "name": "get_weather",
+        "description": "Get current weather for a city",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "city": { "type": "string", "description": "City name" }
+          },
+          "required": ["city"]
+        }
+      }
+    ]
+  }
+}
+```
+
+*Direct REST / Simplified Format:*
+```json
+{
+  "tools": [
+    {
+      "name": "calculate_discount",
+      "description": "Calculate discount percentage",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "price": { "type": "number" }
+        }
+      }
+    }
+  ]
+}
+```
+
+---
+
+### 2. Tool Execution (`tools/call`)
+When the AI outputs a `[[TOOL_CALL]]` during chat, the extension sends a `POST` request to execute it:
+
+**Request Payload:**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1788088860664,
+  "method": "tools/call",
+  "params": {
+    "name": "get_weather",
+    "arguments": {
+      "city": "Tehran"
+    }
+  }
+}
+```
+
+**Expected Response Format:**
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1788088860664,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "The weather in Tehran is 24°C and Sunny."
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 3. Quick Implementation Example (Cloudflare Worker / Node.js)
+
+```javascript
+export default {
+  async fetch(request) {
+    // Handle CORS headers
+    const corsHeaders = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    };
+
+    if (request.method === "OPTIONS") {
+      return new Response(null, { headers: corsHeaders });
+    }
+
+    const body = await request.json().catch(() => ({}));
+
+    // 1. Tool Discovery
+    if (body.method === "tools/list") {
+      return Response.json({
+        jsonrpc: "2.0",
+        id: body.id || 1,
+        result: {
+          tools: [
+            {
+              name: "get_date",
+              description: "Returns the current UTC date",
+              inputSchema: { type: "object", properties: {} }
+            }
+          ]
+        }
+      }, { headers: corsHeaders });
+    }
+
+    // 2. Tool Execution
+    if (body.method === "tools/call") {
+      const { name, arguments: args } = body.params || {};
+
+      if (name === "get_date") {
+        return Response.json({
+          jsonrpc: "2.0",
+          id: body.id,
+          result: {
+            content: [{ type: "text", text: new Date().toISOString() }]
+          }
+        }, { headers: corsHeaders });
+      }
+    }
+
+    return Response.json({ error: "Method not found" }, { status: 404, headers: corsHeaders });
+  }
+};
+```
 
 ---
 
@@ -201,6 +356,60 @@ git clone https://github.com/MiliScripts/free-mcp-tool-extension.git
 <p align="center">
   <img src="assets/step3_chat_execution.svg" alt="گام ۳: اجرای خودکار ابزارها در چت وب" width="85%" />
 </p>
+
+---
+
+### 🛠️ راهنمای توسعه‌دهندگان (ساخت سرور اختصاصی MCP)
+
+اگر می‌خواهید سرور MCP اختصاصی خود را (با Cloudflare Workers، پایتون یا Node.js) پیاده‌سازی کنید:
+
+۱. **متد دریافت لیست ابزارها (`tools/list`)**:
+اکستنشن به آدرس سرور شما درخواست `POST` با بدنه زیر می‌فرستد:
+```json
+{ "jsonrpc": "2.0", "id": 1, "method": "tools/list" }
+```
+پاسخ سرور باید ساختار ابزارها را در `result.tools` بازگرداند:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tools": [
+      {
+        "name": "my_tool",
+        "description": "توضیحات ابزار",
+        "inputSchema": { "type": "object", "properties": {} }
+      }
+    ]
+  }
+}
+```
+
+۲. **متد اجرای ابزار (`tools/call`)**:
+هنگامی که مدل در چت دستور فراخوانی ابزار را صادر کند:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1788088860664,
+  "method": "tools/call",
+  "params": {
+    "name": "my_tool",
+    "arguments": { "param1": "value" }
+  }
+}
+```
+پاسخ نتیجه به شکل زیر خواهد بود:
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1788088860664,
+  "result": {
+    "content": [
+      { "type": "text", "text": "نتیجه اجرای ابزار" }
+    ]
+  }
+}
+```
 
 ---
 
