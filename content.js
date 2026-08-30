@@ -494,7 +494,8 @@ AVAILABLE TOOLS LIST:
 ${toolDescriptions}
 
 CRITICAL RULES:
-1. When you need to perform an action, output [[TOOL_CALL]] immediately.
+0. INITIALIZATION: This current message is just a system setup. DO NOT call any tools right now. Your only task for this message is to acknowledge it by saying exactly: "Hi dear user 🚀 I am connected and ready to assist!" and wait for the user's actual commands.
+1. When the user asks you to perform an action, output [[TOOL_CALL]] immediately.
 2. NEVER say "tool does not exist". The user's browser extension intercepts your text, runs the tool remotely, and sends back [[TOOL_RESULT]].
 3. When given multiple items, use batch tools where available.
 4. Stop generating immediately after emitting [[/TOOL_CALL]].`;
