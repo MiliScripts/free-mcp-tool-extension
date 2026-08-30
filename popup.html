@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP Agent Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #0c0d12;
+      --surface-1: #161822;
+      --surface-2: #1e2130;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --accent: #10b981;
+      --danger: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    body {
+      width: 410px; min-height: 480px; max-height: 600px; padding: 18px;
+      font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-main); color: var(--text-main);
+      overflow-x: hidden; display: flex; flex-direction: column; gap: 14px;
+    }
+    .header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--border-color); }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .logo-container { width: 32px; height: 32px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .logo-container svg { width: 18px; height: 18px; color: #fff; }
+    .brand-text h1 { font-size: 15px; font-weight: 700; }
+    .brand-text p { font-size: 11px; color: var(--text-muted); }
+    .header-badge { display: flex; align-items: center; gap: 6px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); color: #34d399; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+    .input-box { display: flex; background: var(--surface-1); border: 1px solid var(--border-color); border-radius: 9999px; padding: 4px 5px 4px 14px; align-items: center; gap: 8px; }
+    .input-box svg { width: 16px; height: 16px; color: var(--text-muted); }
+    .input-box input { flex: 1; background: transparent; border: none; outline: none; color: var(--text-main); font-size: 12px; font-family: 'JetBrains Mono', monospace; }
+    .btn-pill-add { background: var(--primary); color: #fff; border: none; padding: 7px 14px; border-radius: 9999px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+    .section-title { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; display: flex; justify-content: space-between; }
+    .server-list { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; max-height: 350px; }
+    .server-card { background: var(--surface-1); border: 1px solid var(--border-color); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .url-info { display: flex; align-items: center; gap: 8px; overflow: hidden; flex: 1; }
+    .status-indicator { width: 8px; height: 8px; border-radius: 50%; background: #64748b; }
+    .status-indicator.online { background: #10b981; }
+    .status-indicator.error { background: #ef4444; }
+    .url-text { font-size: 12px; font-family: 'JetBrains Mono', monospace; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-actions { display: flex; align-items: center; gap: 6px; }
+    .btn-icon { background: transparent; border: none; color: var(--text-muted); width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .btn-icon:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .btn-icon.danger:hover { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+    .btn-icon svg { width: 15px; height: 15px; }
+    .toggle-switch { position: relative; width: 32px; height: 18px; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; inset: 0; background-color: #334155; border-radius: 999px; transition: .25s; }
+    .slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 2px; bottom: 2px; background-color: white; border-radius: 50%; transition: .25s; }
+    input:checked + .slider { background-color: var(--accent); }
+    input:checked + .slider:before { transform: translateX(14px); }
+    .tools-drawer { border-top: 1px dashed rgba(255, 255, 255, 0.08); padding-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .tool-pill { background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.25); color: #93c5fd; padding: 3px 8px; border-radius: 999px; font-size: 10.5px; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 4px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <div class="logo-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></div>
+      <div class="brand-text"><h1>MCP Agent Manager</h1><p>Tool Router & Model Client</p></div>
+    </div>
+    <div class="header-badge"><span id="activeCountBadge">0 Servers</span></div>
+  </div>
+  <div class="input-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+    <input type="text" id="serverUrl" placeholder="https://panel.nivalcare.ir/mcp/admin/milad" spellcheck="false">
+    <button class="btn-pill-add" id="addBtn">Add</button>
+  </div>
+  <div class="section-title"><span>Configured Servers</span><span id="toolTotalBadge" style="font-size: 10px; color: var(--accent);">0 Tools ready</span></div>
+  <div class="server-list" id="serverList"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

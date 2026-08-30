@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "MCP AI Agent Router",
+  "version": "3.8",
+  "description": "Universal MCP client for DeepSeek, Qwen, Duck.ai, Gemini, and Mistral.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.duck.ai/*",
+        "*://*.qwen.ai/*",
+        "*://*.deepseek.com/*",
+        "*://*.z.ai/*",
+        "*://*.mistral.ai/*",
+        "*://gemini.google.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
