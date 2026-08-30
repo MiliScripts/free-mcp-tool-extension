@@ -532,8 +532,93 @@ function extractToolCallData(raw) {
 }
 
 // 10. Execution Loop & Dynamic Re-Mount
+
+// 11. Visual Disguise for MCP Blocks (DeepSeek Only)
+function disguiseMCPBlocks() {
+    if (!location.hostname.includes("deepseek.com")) return;
+
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    const targetNodes = [];
+    
+    while ((node = walker.nextNode())) {
+        const text = node.nodeValue;
+        if (text.includes("[SYSTEM INSTRUCTIONS: AUTONOMOUS EXTERNAL MCP ROUTER]")) {
+            targetNodes.push({ node, type: 'system' });
+        } else if (text.includes("[[TOOL_RESULT]]")) {
+            targetNodes.push({ node, type: 'result' });
+        }
+    }
+
+    targetNodes.forEach(item => {
+        let container = item.node.parentElement;
+        if (!container) return;
+
+        // 🛑 STRICT GUARD 1: NEVER touch the chat input box!
+        if (container.closest('textarea, input, [contenteditable="true"], form, #chat-input')) {
+            return;
+        }
+
+        if (item.type === 'result') {
+            const preBlock = container.closest('pre');
+            if (preBlock) container = preBlock;
+        }
+
+        // 🛑 STRICT GUARD 2: Ignore hidden React height-measurement clones (fixes floating ghost widgets)
+        const rect = container.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0 || container.style.visibility === "hidden") {
+            if (container.dataset.mcpDisguised !== "true") return; 
+        }
+
+        if (container.dataset.mcpDisguised === "true") return;
+        container.dataset.mcpDisguised = "true";
+        
+        container.style.display = "none";
+
+        const uiDiv = document.createElement("div");
+        Object.assign(uiDiv.style, {
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "6px 12px",
+            borderRadius: "8px",
+            fontFamily: "'Geist Mono', monospace",
+            width: "fit-content",
+            marginTop: "4px",
+            marginBottom: "4px"
+        });
+
+        if (item.type === 'system') {
+            uiDiv.style.background = "rgba(16, 185, 129, 0.1)";
+            uiDiv.style.border = "1px solid rgba(16, 185, 129, 0.3)";
+            const imgPath = chrome.runtime.getURL("assets/activated.svg");
+            uiDiv.innerHTML = `
+                <img src="${imgPath}" alt="MCP" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+                <div style="display: flex; flex-direction: column;">
+                    <span style="font-weight: 600; font-size: 12px; color: #4ade80; line-height: 1.2;">MCP ROUTER INITIALIZED</span>
+                    <span style="font-size: 10px; color: #a1a1aa; line-height: 1.2;">Tools active & ready</span>
+                </div>
+            `;
+        } else {
+            uiDiv.style.background = "rgba(59, 130, 246, 0.1)";
+            uiDiv.style.border = "1px solid rgba(59, 130, 246, 0.3)";
+            const imgPath = chrome.runtime.getURL("assets/mcp_responded.svg");
+            uiDiv.innerHTML = `
+                <img src="${imgPath}" alt="Result" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;">
+                <div style="display: flex; flex-direction: column;">
+                    <span style="font-weight: 600; font-size: 12px; color: #3b82f6; line-height: 1.2;">TOOL RESULT RETURNED</span>
+                    <span style="font-size: 10px; color: #a1a1aa; line-height: 1.2;">Data successfully fed back to model</span>
+                </div>
+            `;
+        }
+        
+        container.parentNode.insertBefore(uiDiv, container);
+    });
+}
+
 setInterval(async () => {
     ensurePillNavbar();
+    disguiseMCPBlocks();
 
     if (!isAgentActive) return;
     if (isAIGenerating()) return;
@@ -630,3 +715,4 @@ style.innerHTML = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
 document.head?.appendChild(style);
 
 ensurePillNavbar();
+    disguiseMCPBlocks();

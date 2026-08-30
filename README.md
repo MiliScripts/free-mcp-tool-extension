@@ -261,6 +261,8 @@ export default {
 free-mcp-tool-extension/
 ├── assets/
 │   ├── banner.jpg                  # GitHub repository banner
+│   ├── activated.svg               # Extension activation & agent status diagram
+│   ├── mcp_responded.svg           # MCP server response & tool call loop diagram
 │   ├── step_download_zip.svg       # Download ZIP illustration
 │   ├── step1_load_extension.jpg    # Installation screenshot
 │   ├── step2_setup_server.svg      # Server popup UI diagram

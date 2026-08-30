@@ -37,8 +37,21 @@
         "*://*.mistral.ai/*",
         "*://gemini.google.com/*"
       ],
-      "js": ["content.js"],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/activated.svg",
+        "assets/mcp_responded.svg"
+      ],
+      "matches": [
+        "*://*.deepseek.com/*"
+      ]
     }
   ]
 }
