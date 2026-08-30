@@ -1,5 +1,13 @@
 # Free MCP Tool Extension 🚀
 
+<p align="center">
+  <img src="assets/banner.jpg" alt="Free MCP Tool Extension Banner" width="100%" />
+</p>
+
+<p align="center">
+  <img src="assets/icons/icon128.png" alt="Free MCP Tool Extension Logo" width="96" height="96" />
+</p>
+
 A free, open-source, universal Model Context Protocol (MCP) tool runner and autonomous agent router for web AI chats. Seamlessly connect local or remote MCP servers and execute tools directly inside web LLMs like DeepSeek, Google Gemini, Qwen, DuckDuckGo AI, Mistral, and Z.ai.
 
 ---
@@ -31,6 +39,9 @@ A free, open-source, universal Model Context Protocol (MCP) tool runner and auto
 
 ```
 free-mcp-tool-extension/
+├── assets/
+│   ├── banner.jpg      # GitHub repository banner
+│   └── icons/          # Extension icons (16, 32, 48, 128px)
 ├── manifest.json       # Chrome extension Manifest V3 configuration
 ├── popup.html          # Extension popup UI (modern dark theme)
 ├── popup.js            # Server management, live tool registry, and toggles
