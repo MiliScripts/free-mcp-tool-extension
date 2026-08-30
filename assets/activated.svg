@@ -1,148 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="100%" height="100%" style="background:#0b0d14; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; border-radius: 14px;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="100%" height="100%">
   <defs>
-    <!-- Gradients -->
-    <linearGradient id="actHeaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="actGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#10b981" />
       <stop offset="100%" stop-color="#059669" />
     </linearGradient>
-
-    <linearGradient id="actBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#141824" />
-      <stop offset="100%" stop-color="#0e111a" />
-    </linearGradient>
-
-    <linearGradient id="pulseGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#10b981" stop-opacity="0.4" />
-      <stop offset="50%" stop-color="#34d399" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="#10b981" stop-opacity="0.4" />
-    </linearGradient>
-
-    <linearGradient id="blueCardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e2640" />
-      <stop offset="100%" stop-color="#13192b" />
-    </linearGradient>
-
-    <!-- Drop Shadows -->
-    <filter id="glowShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#10b981" flood-opacity="0.25"/>
-    </filter>
-    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.6"/>
+    <filter id="actGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#10b981" flood-opacity="0.4"/>
     </filter>
   </defs>
 
-  <!-- Browser Chrome Navigation Bar -->
-  <rect x="0" y="0" width="900" height="42" fill="#121520" rx="14" ry="14"/>
-  <circle cx="24" cy="21" r="6" fill="#ef4444" />
-  <circle cx="44" cy="21" r="6" fill="#f59e0b" />
-  <circle cx="64" cy="21" r="6" fill="#10b981" />
-  <rect x="180" y="9" width="540" height="24" rx="7" fill="#1c202e"/>
-  <text x="450" y="25" fill="#94a3b8" font-size="12" text-anchor="middle" font-family="monospace">https://chat.deepseek.com [MCP Extension: ACTIVATED]</text>
+  <!-- Outer Rounded Badge -->
+  <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#actGrad)" filter="url(#actGlow)"/>
 
-  <!-- Extension Toolbar Button Indicator (Top Right) -->
-  <g transform="translate(740, 7)">
-    <rect width="140" height="28" rx="14" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1.2"/>
-    <circle cx="16" cy="14" r="4.5" fill="#10b981"/>
-    <text x="28" y="18" fill="#34d399" font-size="11" font-weight="700">MCP ACTIVE</text>
-  </g>
+  <!-- Inner Subtle Ring -->
+  <rect x="3.5" y="3.5" width="41" height="41" rx="10.5" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.25"/>
 
-  <!-- Main Canvas Content -->
-  <g transform="translate(45, 65)">
-    <!-- Activation Hero Card -->
-    <g filter="url(#cardShadow)">
-      <rect width="810" height="410" rx="18" fill="url(#actBgGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
-    </g>
+  <!-- Center Shield Icon -->
+  <path d="M24 10 L34 14.5 V22.5 C34 28.5 24 33.5 24 33.5 C24 33.5 14 28.5 14 22.5 V14.5 L24 10 Z" fill="rgba(255,255,255,0.15)" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
 
-    <!-- Glowing Top Banner Strip -->
-    <rect x="0" y="0" width="810" height="6" rx="3" fill="url(#pulseGlow)"/>
-
-    <!-- Header Section -->
-    <g transform="translate(30, 30)">
-      <!-- Animated Status Shield Icon -->
-      <rect width="48" height="48" rx="14" fill="url(#actHeaderGrad)" filter="url(#glowShadow)"/>
-      <path d="M24 13 L34 18 V26 C34 32 24 37 24 37 C24 37 14 32 14 26 V18 L24 13 Z" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linejoin="round"/>
-      <path d="M20 25 L23 28 L28 22" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-      <text x="64" y="24" fill="#ffffff" font-size="20" font-weight="800" letter-spacing="-0.3">Free MCP Tool Extension is Activated</text>
-      <text x="64" y="44" fill="#a7f3d0" font-size="13" font-weight="500">Autonomous tool routing engine is actively hooked into your Web AI Chat session.</text>
-
-      <!-- Active Status Badge -->
-      <g transform="translate(630, 8)">
-        <rect width="120" height="32" rx="16" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="1.5"/>
-        <circle cx="18" cy="16" r="5" fill="#10b981"/>
-        <text x="32" y="21" fill="#34d399" font-size="12" font-weight="700">STATUS: ON</text>
-      </g>
-    </g>
-
-    <!-- Divider -->
-    <line x1="30" y1="95" x2="780" y2="95" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-
-    <!-- Middle Interactive Overlay Demo -->
-    <g transform="translate(30, 115)">
-      <!-- Web Chat Interface Context -->
-      <rect width="470" height="260" rx="14" fill="#0d1017" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
-      
-      <!-- Chat Header -->
-      <rect x="0" y="0" width="470" height="36" rx="14" fill="#161b26"/>
-      <circle cx="20" cy="18" r="4" fill="#3b82f6"/>
-      <text x="32" y="22" fill="#cbd5e1" font-size="12" font-weight="600">DeepSeek / Gemini Web AI Interface</text>
-
-      <!-- Prompt Input Bubble -->
-      <g transform="translate(18, 52)">
-        <rect width="434" height="42" rx="10" fill="#181e2b" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
-        <text x="14" y="25" fill="#94a3b8" font-size="12">User Prompt: <tspan fill="#f1f5f9">"Send current status and weather to Telegram"</tspan></text>
-      </g>
-
-      <!-- Agent Injected Status Bar (Floating Widget) -->
-      <g transform="translate(18, 110)" filter="url(#glowShadow)">
-        <rect width="434" height="60" rx="12" fill="#0f172a" stroke="#10b981" stroke-width="1.8"/>
-        
-        <circle cx="30" cy="30" r="14" fill="rgba(16,185,129,0.15)"/>
-        <path d="M25 30 L29 34 L36 26" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
-        
-        <text x="56" y="27" fill="#ffffff" font-size="13" font-weight="700">⚡ MCP Agent: Active &amp; Ready</text>
-        <text x="56" y="45" fill="#6ee7b7" font-size="11">2 Servers Connected • 5 Tools Injected • Intercepting Prompt</text>
-        
-        <!-- Toggle Pill -->
-        <rect x="366" y="18" width="52" height="24" rx="12" fill="#10b981"/>
-        <circle cx="404" cy="30" r="9" fill="#ffffff"/>
-      </g>
-
-      <!-- Active Tools List -->
-      <g transform="translate(18, 186)">
-        <rect width="134" height="26" rx="13" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-        <text x="67" y="17" fill="#93c5fd" font-size="11" font-family="monospace" text-anchor="middle">✓ get_date</text>
-
-        <rect x="144" width="138" height="26" rx="13" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-        <text x="213" y="17" fill="#93c5fd" font-size="11" font-family="monospace" text-anchor="middle">✓ send_telegram</text>
-
-        <rect x="290" width="126" height="26" rx="13" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-        <text x="353" y="17" fill="#93c5fd" font-size="11" font-family="monospace" text-anchor="middle">✓ get_weather</text>
-      </g>
-    </g>
-
-    <!-- Side Feature Cards (Right Column) -->
-    <g transform="translate(520, 115)">
-      <!-- Card 1: Dynamic Prompt Injection -->
-      <g transform="translate(0, 0)">
-        <rect width="260" height="78" rx="12" fill="url(#blueCardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-        <text x="16" y="28" fill="#60a5fa" font-size="12" font-weight="700">1. Dynamic System Prompt</text>
-        <text x="16" y="48" fill="#94a3b8" font-size="11">Automatically appends tool schemas &amp; instructions to chat context.</text>
-      </g>
-
-      <!-- Card 2: Intercept & Auto Run -->
-      <g transform="translate(0, 90)">
-        <rect width="260" height="78" rx="12" fill="url(#blueCardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-        <text x="16" y="28" fill="#34d399" font-size="12" font-weight="700">2. Autonomous Tool Calling</text>
-        <text x="16" y="48" fill="#94a3b8" font-size="11">Intercepts [[TOOL_CALL]], executes via MCP server &amp; replies.</text>
-      </g>
-
-      <!-- Card 3: CORS & Background Bridge -->
-      <g transform="translate(0, 180)">
-        <rect width="260" height="78" rx="12" fill="url(#blueCardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-        <text x="16" y="28" fill="#c084fc" font-size="12" font-weight="700">3. Background CORS Bridge</text>
-        <text x="16" y="48" fill="#94a3b8" font-size="11">Bypasses cross-origin restrictions seamlessly via service worker.</text>
-      </g>
-    </g>
-  </g>
+  <!-- Checkmark -->
+  <path d="M19.5 22 L22.5 25 L28.5 18" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
