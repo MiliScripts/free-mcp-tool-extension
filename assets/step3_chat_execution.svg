@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="100%" height="100%" style="background:#0e0f15; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; border-radius: 12px;">
+  <defs>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+
+  <!-- Browser Chrome Top Bar -->
+  <rect x="0" y="0" width="900" height="40" fill="#14161f" rx="12" ry="12"/>
+  <circle cx="25" cy="20" r="6" fill="#ef4444" />
+  <circle cx="45" cy="20" r="6" fill="#f59e0b" />
+  <circle cx="65" cy="20" r="6" fill="#10b981" />
+  <rect x="180" y="8" width="540" height="24" rx="6" fill="#1f2330"/>
+  <text x="450" y="24" fill="#94a3b8" font-size="12" text-anchor="middle" font-family="monospace">https://chat.deepseek.com / https://gemini.google.com</text>
+
+  <!-- Web Chat Area -->
+  <g transform="translate(60, 60)">
+    <!-- User Prompt Bubble -->
+    <g transform="translate(240, 20)">
+      <rect width="540" height="50" rx="14" fill="#1e293b" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <text x="20" y="30" fill="#f8fafc" font-size="13.5">Please check user records for ID #402 and run analysis.</text>
+    </g>
+
+    <!-- AI Agent Response with Autonomous Tool Call -->
+    <g transform="translate(20, 90)">
+      <rect width="760" height="210" rx="16" fill="#141622" stroke="rgba(59,130,246,0.2)" stroke-width="1.2"/>
+      
+      <!-- AI Header -->
+      <g transform="translate(20, 18)">
+        <circle cx="14" cy="14" r="14" fill="url(#aiGrad)"/>
+        <text x="14" y="19" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">AI</text>
+        <text x="38" y="20" fill="#e2e8f0" font-size="14" font-weight="600">Model Response</text>
+      </g>
+
+      <!-- Tool Execution Pill / Call Status -->
+      <g transform="translate(20, 56)">
+        <rect width="720" height="42" rx="8" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+        <circle cx="20" cy="21" r="5" fill="#10b981"/>
+        <text x="36" y="26" fill="#34d399" font-size="12" font-family="monospace" font-weight="600">🛠️ Executing MCP Tool: fetch_patient({ "id": 402 })</text>
+        <text x="700" y="26" fill="#10b981" font-size="11" font-weight="600" text-anchor="end">Status: 200 OK ✓</text>
+      </g>
+
+      <!-- Autonomous Agent Feedback Loop Result -->
+      <text x="20" y="128" fill="#94a3b8" font-size="13">I retrieved the record via MCP. Here is the patient summary and analysis:</text>
+      <text x="20" y="152" fill="#f8fafc" font-size="13" font-weight="500">• Name: Sara Moradi | Status: Active | Last Check: Normal</text>
+      <text x="20" y="174" fill="#f8fafc" font-size="13" font-weight="500">• Autonomous step completed successfully in 320ms.</text>
+    </g>
+
+    <!-- Floating Extension Status Widget in Web LLM -->
+    <g transform="translate(560, 320)">
+      <rect width="220" height="44" rx="22" fill="#0f172a" stroke="#3b82f6" stroke-width="1.5"/>
+      <circle cx="24" cy="22" r="6" fill="#10b981"/>
+      <text x="40" y="27" fill="#ffffff" font-size="12" font-weight="600">MCP Agent: Active</text>
+      <rect x="160" y="10" width="48" height="24" rx="12" fill="#10b981"/>
+      <circle cx="194" cy="22" r="8" fill="#ffffff"/>
+    </g>
+  </g>
+</svg>
