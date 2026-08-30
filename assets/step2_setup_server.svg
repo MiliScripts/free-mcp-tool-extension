@@ -58,7 +58,7 @@
 
     <!-- Section Title -->
     <text x="18" y="148" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="0.5">CONFIGURED SERVERS</text>
-    <text x="392" y="148" fill="#10b981" font-size="10.5" font-weight="600" text-anchor="end">4 Tools Ready</text>
+    <text x="392" y="148" fill="#10b981" font-size="10.5" font-weight="600" text-anchor="end">2 Tools Ready</text>
 
     <!-- Server Card 1 -->
     <g transform="translate(18, 160)">
@@ -66,7 +66,7 @@
       
       <!-- Card Top -->
       <circle cx="20" cy="24" r="4.5" fill="#10b981"/>
-      <text x="32" y="28" fill="#e2e8f0" font-size="12" font-weight="600" font-family="monospace">https://panel.nivalcare.ir/mcp</text>
+      <text x="32" y="28" fill="#e2e8f0" font-size="12" font-weight="600" font-family="monospace">https://mcpdate.kamyaarsr.workers.dev/mcp</text>
       
       <!-- Toggle Switch (ON) -->
       <rect x="326" y="15" width="34" height="18" rx="9" fill="#10b981"/>
@@ -77,14 +77,11 @@
 
       <!-- Tool Pills -->
       <g transform="translate(12, 60)">
-        <rect width="98" height="22" rx="11" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-        <text x="49" y="15" fill="#93c5fd" font-size="10.5" font-family="monospace" text-anchor="middle">⚡ search_db</text>
+        <rect width="112" height="24" rx="12" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+        <text x="56" y="16" fill="#93c5fd" font-size="11" font-family="monospace" text-anchor="middle">✓ get_date</text>
 
-        <rect x="104" width="108" height="22" rx="11" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-        <text x="158" y="15" fill="#93c5fd" font-size="10.5" font-family="monospace" text-anchor="middle">⚡ fetch_patient</text>
-
-        <rect x="218" width="94" height="22" rx="11" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
-        <text x="265" y="15" fill="#93c5fd" font-size="10.5" font-family="monospace" text-anchor="middle">⚡ run_query</text>
+        <rect x="120" width="154" height="24" rx="12" fill="rgba(59,130,246,0.12)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+        <text x="197" y="16" fill="#93c5fd" font-size="11" font-family="monospace" text-anchor="middle">✓ get_jalali_date</text>
       </g>
     </g>
 

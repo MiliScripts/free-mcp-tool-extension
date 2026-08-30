@@ -59,8 +59,8 @@ A free, open-source, universal Model Context Protocol (MCP) tool runner and auto
 
 #### Step 2: Configure Your MCP Servers
 1. Click the **Free MCP Tool Extension** icon in your browser extension toolbar.
-2. Enter your MCP Server URL (e.g. `https://panel.nivalcare.ir/mcp` or `http://localhost:8000/mcp`) and click **+ Add**.
-3. The extension will automatically verify the connection and register all exposed tools.
+2. Enter your MCP Server URL (you can try the free public date MCP: `https://mcpdate.kamyaarsr.workers.dev/mcp`) and click **+ Add**.
+3. The extension will automatically verify the connection and register all exposed tools (e.g. `get_date`, `get_jalali_date`).
 
 <p align="center">
   <img src="assets/step2_setup_server.svg" alt="Step 2: MCP Server Configuration Popup" width="85%" />
@@ -146,8 +146,8 @@ free-mcp-tool-extension/
 
 #### گام ۲: اضافه کردن سرور MCP
 1. روی آیکون **Free MCP Tool Extension** در نوار ابزار بالای مرورگر کلیک کنید.
-2. آدرس سرور MCP خود را وارد کنید (مانند `https://panel.nivalcare.ir/mcp` یا `http://localhost:8000/mcp`) و دکمه **Add** را بزنید.
-3. اکستنشن به صورت خودکار ابزارها را شناسایی و لیست می‌کند.
+2. آدرس سرور MCP خود را وارد کنید (می‌توانید از سرور عمومی و رایگان تقویم جلالی/میلادی تست کنید: `https://mcpdate.kamyaarsr.workers.dev/mcp`) و دکمه **Add** را بزنید.
+3. اکستنشن به صورت خودکار ابزارها را شناسایی و لیست می‌کند (مانند `get_date` و `get_jalali_date`).
 
 <p align="center">
   <img src="assets/step2_setup_server.svg" alt="گام ۲: پنل تنظیمات سرور MCP" width="85%" />

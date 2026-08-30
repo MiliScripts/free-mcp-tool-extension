@@ -19,7 +19,7 @@
     <!-- User Prompt Bubble -->
     <g transform="translate(240, 20)">
       <rect width="540" height="50" rx="14" fill="#1e293b" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-      <text x="20" y="30" fill="#f8fafc" font-size="13.5">Please check user records for ID #402 and run analysis.</text>
+      <text x="20" y="30" fill="#f8fafc" font-size="13.5">What is today's Gregorian and Persian/Jalali date?</text>
     </g>
 
     <!-- AI Agent Response with Autonomous Tool Call -->
@@ -30,21 +30,21 @@
       <g transform="translate(20, 18)">
         <circle cx="14" cy="14" r="14" fill="url(#aiGrad)"/>
         <text x="14" y="19" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">AI</text>
-        <text x="38" y="20" fill="#e2e8f0" font-size="14" font-weight="600">Model Response</text>
+        <text x="38" y="20" fill="#e2e8f0" font-size="14" font-weight="600">Model Response (DeepSeek / Gemini)</text>
       </g>
 
       <!-- Tool Execution Pill / Call Status -->
       <g transform="translate(20, 56)">
         <rect width="720" height="42" rx="8" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
         <circle cx="20" cy="21" r="5" fill="#10b981"/>
-        <text x="36" y="26" fill="#34d399" font-size="12" font-family="monospace" font-weight="600">🛠️ Executing MCP Tool: fetch_patient({ "id": 402 })</text>
+        <text x="36" y="26" fill="#34d399" font-size="12" font-family="monospace" font-weight="600">🛠️ Executing MCP Tool: get_jalali_date({})</text>
         <text x="700" y="26" fill="#10b981" font-size="11" font-weight="600" text-anchor="end">Status: 200 OK ✓</text>
       </g>
 
       <!-- Autonomous Agent Feedback Loop Result -->
-      <text x="20" y="128" fill="#94a3b8" font-size="13">I retrieved the record via MCP. Here is the patient summary and analysis:</text>
-      <text x="20" y="152" fill="#f8fafc" font-size="13" font-weight="500">• Name: Sara Moradi | Status: Active | Last Check: Normal</text>
-      <text x="20" y="174" fill="#f8fafc" font-size="13" font-weight="500">• Autonomous step completed successfully in 320ms.</text>
+      <text x="20" y="128" fill="#94a3b8" font-size="13">Here are today's verified dates retrieved from MCP:</text>
+      <text x="20" y="152" fill="#f8fafc" font-size="13" font-weight="500">• Gregorian: 2026-08-30 (August 30, 2026)</text>
+      <text x="20" y="174" fill="#f8fafc" font-size="13" font-weight="500">• Jalali (Persian): 1405/06/08 (Shahrivar 8, 1405)</text>
     </g>
 
     <!-- Floating Extension Status Widget in Web LLM -->
