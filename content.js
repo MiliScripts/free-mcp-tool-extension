@@ -537,100 +537,99 @@ function extractToolCallData(raw) {
 function disguiseMCPBlocks() {
     if (!location.hostname.includes("deepseek.com")) return;
 
-    // Scope search ONLY to chat message content containers (never input bar/footer)
-    const messageBlocks = document.querySelectorAll(
-        '.ds-markdown, ' +
-        '.chat-assistant, ' +
-        '.chat-user, ' +
-        '[data-message-author-role], ' +
-        '.response-message-content, ' +
-        '.message-content'
-    );
+    // Find the bottom input/composer element to ensure we never touch it
+    const activeInput = document.querySelector('textarea, div[contenteditable="true"], #chat-input');
+    const inputArea = activeInput ? (activeInput.closest('form, #chat-input, .ds-chat-input') || activeInput.parentElement?.parentElement?.parentElement) : null;
 
-    messageBlocks.forEach(msgBlock => {
-        // Strict guard: ensure it is not inside any input/editor/footer area
-        if (msgBlock.closest('textarea, input, [contenteditable="true"], form, #chat-input, [class*="input"], [class*="footer"], [class*="composer"], [class*="bottom"]')) {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    const targetNodes = [];
+    
+    while ((node = walker.nextNode())) {
+        const text = node.nodeValue;
+        if (!text) continue;
+
+        if (text.includes("[SYSTEM INSTRUCTIONS: AUTONOMOUS EXTERNAL MCP ROUTER]")) {
+            targetNodes.push({ node, type: 'system' });
+        } else if (text.includes("[[TOOL_RESULT]]")) {
+            targetNodes.push({ node, type: 'result' });
+        }
+    }
+
+    targetNodes.forEach(item => {
+        let el = item.node.parentElement;
+        if (!el) return;
+
+        // 🛑 STRICT GUARD: Ignore anything inside textarea, contenteditable, or the input area
+        if (el.closest('textarea, input, [contenteditable="true"]') || (inputArea && inputArea.contains(el))) {
             return;
         }
 
-        const walker = document.createTreeWalker(msgBlock, NodeFilter.SHOW_TEXT, null, false);
-        let node;
-        const targetNodes = [];
-        
-        while ((node = walker.nextNode())) {
-            const text = node.nodeValue;
-            if (text.includes("[SYSTEM INSTRUCTIONS: AUTONOMOUS EXTERNAL MCP ROUTER]")) {
-                targetNodes.push({ node, type: 'system' });
-            } else if (text.includes("[[TOOL_RESULT]]")) {
-                targetNodes.push({ node, type: 'result' });
+        // Find the right wrapper container
+        let targetContainer = el;
+
+        if (item.type === 'system') {
+            // Walk up to find the user message bubble / card container
+            let curr = el;
+            while (curr && curr.parentElement && curr.parentElement !== document.body && curr.parentElement !== document.documentElement) {
+                if (curr.parentElement.textContent.includes("[SYSTEM INSTRUCTIONS: AUTONOMOUS EXTERNAL MCP ROUTER]")) {
+                    curr = curr.parentElement;
+                } else {
+                    break;
+                }
             }
+            targetContainer = curr;
+        } else if (item.type === 'result') {
+            const preBlock = el.closest('pre, code, div');
+            if (preBlock) targetContainer = preBlock;
         }
 
-        targetNodes.forEach(item => {
-            let container = item.node.parentElement;
-            if (!container) return;
+        // Check if already disguised
+        if (targetContainer.dataset.mcpDisguised === "true") return;
+        targetContainer.dataset.mcpDisguised = "true";
+        
+        targetContainer.style.display = "none";
 
-            // Extra safety: double check parent tree
-            if (container.closest('textarea, input, [contenteditable="true"], form, #chat-input, [class*="input"], [class*="footer"], [class*="composer"], [class*="bottom"]')) {
-                return;
-            }
-
-            if (item.type === 'result') {
-                const preBlock = container.closest('pre, code');
-                if (preBlock && msgBlock.contains(preBlock)) container = preBlock;
-            }
-
-            // Ignore hidden React measurement clones
-            const rect = container.getBoundingClientRect();
-            if (rect.width === 0 || rect.height === 0 || container.style.visibility === "hidden") {
-                if (container.dataset.mcpDisguised !== "true") return; 
-            }
-
-            if (container.dataset.mcpDisguised === "true") return;
-            container.dataset.mcpDisguised = "true";
-            
-            container.style.display = "none";
-
-            const uiDiv = document.createElement("div");
-            uiDiv.className = "mcp-disguised-badge";
-            Object.assign(uiDiv.style, {
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "10px",
-                padding: "6px 12px",
-                borderRadius: "8px",
-                fontFamily: "'Geist Mono', monospace",
-                width: "fit-content",
-                marginTop: "4px",
-                marginBottom: "4px"
-            });
-
-            if (item.type === 'system') {
-                uiDiv.style.background = "rgba(16, 185, 129, 0.1)";
-                uiDiv.style.border = "1px solid rgba(16, 185, 129, 0.3)";
-                const imgPath = chrome.runtime.getURL("assets/activated.svg");
-                uiDiv.innerHTML = `
-                    <img src="${imgPath}" alt="MCP" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain; flex-shrink: 0;">
-                    <div style="display: flex; flex-direction: column;">
-                        <span style="font-weight: 600; font-size: 12px; color: #4ade80; line-height: 1.2;">MCP ROUTER INITIALIZED</span>
-                        <span style="font-size: 10px; color: #a1a1aa; line-height: 1.2;">Tools active & ready</span>
-                    </div>
-                `;
-            } else {
-                uiDiv.style.background = "rgba(59, 130, 246, 0.1)";
-                uiDiv.style.border = "1px solid rgba(59, 130, 246, 0.3)";
-                const imgPath = chrome.runtime.getURL("assets/mcp_responded.svg");
-                uiDiv.innerHTML = `
-                    <img src="${imgPath}" alt="Result" style="width: 20px; height: 20px; border-radius: 4px; object-fit: contain; flex-shrink: 0;">
-                    <div style="display: flex; flex-direction: column;">
-                        <span style="font-weight: 600; font-size: 12px; color: #3b82f6; line-height: 1.2;">TOOL RESULT RETURNED</span>
-                        <span style="font-size: 10px; color: #a1a1aa; line-height: 1.2;">Data successfully fed back to model</span>
-                    </div>
-                `;
-            }
-            
-            container.parentNode.insertBefore(uiDiv, container);
+        const uiDiv = document.createElement("div");
+        uiDiv.className = "mcp-disguised-badge";
+        Object.assign(uiDiv.style, {
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "8px 14px",
+            borderRadius: "10px",
+            fontFamily: "'Geist Mono', monospace",
+            width: "fit-content",
+            marginTop: "6px",
+            marginBottom: "6px",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.25)"
         });
+
+        if (item.type === 'system') {
+            uiDiv.style.background = "rgba(16, 185, 129, 0.12)";
+            uiDiv.style.border = "1px solid rgba(16, 185, 129, 0.35)";
+            const imgPath = chrome.runtime.getURL("assets/activated.svg");
+            uiDiv.innerHTML = `
+                <img src="${imgPath}" alt="MCP" style="width: 22px; height: 22px; border-radius: 5px; object-fit: contain; flex-shrink: 0; display: block;">
+                <div style="display: flex; flex-direction: column;">
+                    <span style="font-weight: 600; font-size: 12px; color: #4ade80; line-height: 1.25;">MCP ROUTER INITIALIZED</span>
+                    <span style="font-size: 10px; color: #a1a1aa; line-height: 1.25;">Tools active &amp; ready</span>
+                </div>
+            `;
+        } else {
+            uiDiv.style.background = "rgba(59, 130, 246, 0.12)";
+            uiDiv.style.border = "1px solid rgba(59, 130, 246, 0.35)";
+            const imgPath = chrome.runtime.getURL("assets/mcp_responded.svg");
+            uiDiv.innerHTML = `
+                <img src="${imgPath}" alt="Result" style="width: 22px; height: 22px; border-radius: 5px; object-fit: contain; flex-shrink: 0; display: block;">
+                <div style="display: flex; flex-direction: column;">
+                    <span style="font-weight: 600; font-size: 12px; color: #3b82f6; line-height: 1.25;">TOOL RESULT RETURNED</span>
+                    <span style="font-size: 10px; color: #a1a1aa; line-height: 1.25;">Data successfully fed back to model</span>
+                </div>
+            `;
+        }
+        
+        targetContainer.parentNode.insertBefore(uiDiv, targetContainer);
     });
 }
 
